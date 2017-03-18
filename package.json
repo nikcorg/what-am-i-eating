@@ -1,0 +1,44 @@
+{
+  "name": "ruoka-apuri",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "browserify ./src/index.js -o ./dist/bundle.js",
+    "watch": "watchify ./src/index.js -o ./dist/bundle.js -d",
+    "serve": "beefy --cwd dist -p 8080 --debug --index ./dist/index.html ./src/index.js:bundle.js"
+  },
+  "keywords": [],
+  "author": "Niklas Lindgren <nikc@iki.fi>",
+  "license": "MIT",
+  "dependencies": {
+    "data.either": "^1.5.0",
+    "data.maybe": "^1.2.2",
+    "data.task": "^3.1.1",
+    "most": "^1.2.2",
+    "ramda": "^0.23.0",
+    "redom": "^1.17.0"
+  },
+  "devDependencies": {
+    "beefy": "^2.1.8",
+    "browserify": "^14.1.0",
+    "bubleify": "^0.7.0",
+    "rollup-plugin-commonjs": "^8.0.2",
+    "rollup-plugin-node-resolve": "^2.0.0",
+    "rollupify": "^0.3.9",
+    "tape": "^4.6.3",
+    "watchify": "^3.9.0"
+  },
+  "browserify": {
+    "transform": [
+      "bubleify",
+      [
+        "rollupify",
+        {
+          "config": "rollup.config.js"
+        }
+      ]
+    ]
+  }
+}
